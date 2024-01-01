@@ -45,3 +45,13 @@ class ProductLine(models.Model):
 
     def __str__(self):
         return f'{self.product.name} ({self.price})'
+
+
+class ProductImage(models.Model):
+    name = models.CharField(max_length=100)
+    alternative_text = models.CharField(max_length=100)
+    url = models.ImageField(default="test.jpg")
+    product = models.ForeignKey(ProductLine, on_delete=models.PROTECT, related_name="product_image")
+
+    def __str__(self):
+        return self.name

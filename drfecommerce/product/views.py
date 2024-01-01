@@ -1,3 +1,4 @@
+from django.db.models import Prefetch
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -41,5 +42,6 @@ class ProductViewSet(viewsets.ViewSet):
         return Response(serializer.data)
 
     def retrieve(self, request, slug=None):
-        serializer = ProductSerializer(self.queryset.filter(slug=slug).select_related('brand', 'category'), many=True)
+        serializer = ProductSerializer(self.queryset.filter(slug=slug).select_related('brand', 'category')
+                                       .prefetch_related(Prefetch('product_lines__product_image')), many=True)
         return Response(serializer.data)

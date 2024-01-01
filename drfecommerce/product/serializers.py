@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from rest_framework.relations import StringRelatedField
 
-from .models import Category, ProductLine, Product, Brand
+from .models import Category, ProductLine, Product, Brand, ProductImage
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -16,11 +16,18 @@ class BrandSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
+class ProductImageSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = ['name', 'url']
+
+
 class ProductLineSerializer(serializers.ModelSerializer):
-    # product = ProductSerializer()
+    product_image = ProductImageSerializer(many=True)
+
     class Meta:
         model = ProductLine
-        exclude = ['id', 'product', 'is_active']
+        fields = ['price', 'sku', 'stock_quantity', 'product_image']
 
 
 class ProductSerializer(serializers.ModelSerializer):
@@ -31,4 +38,5 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ['id', 'brand_name', 'category_name', 'product_name', 'product_lines', 'slug', 'description', 'is_digital']
+        fields = ['id', 'brand_name', 'category_name', 'product_name', 'product_lines', 'slug', 'description',
+                  'is_digital']
