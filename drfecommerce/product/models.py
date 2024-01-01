@@ -32,3 +32,27 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+<<<<<<< HEAD
+=======
+
+
+class ProductLine(models.Model):
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    sku = models.CharField(max_length=100)
+    stock_quantity = models.PositiveIntegerField()
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name="product_lines")
+    is_active = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f'{self.product.name} ({self.price})'
+
+
+class ProductImage(models.Model):
+    name = models.CharField(max_length=100)
+    alternative_text = models.CharField(max_length=100)
+    url = models.ImageField(default="test.jpg")
+    product = models.ForeignKey(ProductLine, on_delete=models.PROTECT, related_name="product_image")
+
+    def __str__(self):
+        return self.name
+>>>>>>> 6a062daa5fc9ba6266d142c252f0542330cc6262
