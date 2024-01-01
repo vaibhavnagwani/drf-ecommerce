@@ -21,7 +21,9 @@ class BrandViewSet(viewsets.ViewSet):
 
     def list(self, request):
         serializer = BrandSerializer(self.queryset, many=True)
+        print("This is a sample print statement")
         return Response(serializer.data)
+
 
 
 class ProductViewSet(viewsets.ViewSet):
