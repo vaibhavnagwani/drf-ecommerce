@@ -1,5 +1,4 @@
 from rest_framework import viewsets
-from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from .models import Category, Brand, Product
@@ -26,21 +25,7 @@ class BrandViewSet(viewsets.ViewSet):
 
 class ProductViewSet(viewsets.ViewSet):
     queryset = Product.objects.all()
-    lookup_field = "slug"
 
     def list(self, request):
         serializer = ProductSerializer(self.queryset, many=True)
-        return Response(serializer.data)
-
-    @action(
-        methods=["get"],
-        detail=False,
-        url_path=r'category/(?P<category>\w+)/all'
-    )
-    def list_products_by_category(self, request, category=None):
-        serializer = ProductSerializer(self.queryset.filter(category__name=category), many=True)
-        return Response(serializer.data)
-
-    def retrieve(self, request, slug=None):
-        serializer = ProductSerializer(self.queryset.filter(slug=slug).select_related('brand', 'category'), many=True)
         return Response(serializer.data)
