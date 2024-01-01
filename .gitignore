@@ -2,4 +2,8 @@
 db.sqlite3
 **__pycache__/
 venv
+<<<<<<< HEAD
+*.png
+=======
 migrations
+>>>>>>> 6a062daa5fc9ba6266d142c252f0542330cc6262

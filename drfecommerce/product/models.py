@@ -23,17 +23,17 @@ class Brand(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    slug = models.SlugField(max_length=255)
     description = models.TextField(blank=True)
     is_digital = models.BooleanField(default=False)
     brand = models.ForeignKey(Brand, on_delete=models.CASCADE)
     category = TreeForeignKey(
         "Category", on_delete=models.SET_NULL, null=True, blank=True, related_name="products"
     )
-    is_active = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+<<<<<<< HEAD
+=======
 
 
 class ProductLine(models.Model):
@@ -55,3 +55,4 @@ class ProductImage(models.Model):
 
     def __str__(self):
         return self.name
+>>>>>>> 6a062daa5fc9ba6266d142c252f0542330cc6262

@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 
+<<<<<<< HEAD
+from .models import Category, Brand, Product
+=======
 from .models import Category, Brand, Product, ProductLine, ProductImage
 
 
@@ -31,6 +34,7 @@ class ProductAdmin(admin.ModelAdmin):
         ProductLineInline
     ]
 
+>>>>>>> 6a062daa5fc9ba6266d142c252f0542330cc6262
 
 class ProductLineAdmin(admin.ModelAdmin):
     inlines = [
@@ -43,3 +47,7 @@ admin.site.register(ProductLine, ProductLineAdmin)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(Category)
 admin.site.register(Brand)
+<<<<<<< HEAD
+admin.site.register(Product)
+=======
+>>>>>>> 6a062daa5fc9ba6266d142c252f0542330cc6262
