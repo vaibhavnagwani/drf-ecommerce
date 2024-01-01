@@ -20,6 +20,7 @@ class BrandViewSet(viewsets.ViewSet):
 
     def list(self, request):
         serializer = BrandSerializer(self.queryset, many=True)
+        print("Im here")
         return Response(serializer.data)
 
 
